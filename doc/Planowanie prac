@@ -1,0 +1,8 @@
+Pracujemy na nowych branchach.
+
+Wrzucajmy utworzone klasy do folderów o naszym imienu, dzięki czemu nikt nie będzie nadpisywał nikomu jego kodu i w trakcie składnia aplikacji bedziemy zawsze mieli pierwotny kod
+do wglądu.
+
+Jak instalujecie/uruchamiacie program lub instalujecie jakieś blibloteki, to róbcie to w ramach środowiska wirtualnego Pythona. Wystarczy odpalić skrypt src\Scripts\activate.
+
+No i w sumie najważniejsze od czasu do czasu zostawcie w kodzie jakiś komentarz w kodzie :)

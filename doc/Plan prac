@@ -2,17 +2,17 @@ Temat: Menadżer haseł
 
 Plan pracy praktyk - Grupa A
 
-    Utworzenie projektu na platformie GitHub.
+    Utworzenie projektu na platformie GitHub. #Zrobione
 
-    Utworzenie szkieletu aplikacji.
+    Utworzenie szkieletu aplikacji. #Zrobione
 
-    Utworzenie i nawiązanie połączenia z pustą bazą danych.
+    Utworzenie i nawiązanie połączenia z pustą bazą danych. #Do zrobienia później
 
-    Opracowanie algorytmu pozwalającego na generowanie bezpiecznych haseł.
+    Opracowanie algorytmu pozwalającego na generowanie bezpiecznych haseł. #Adam punkt do zrobienia
 
-    Opracowanie lub wykorzystanie i dostosowanie gotowych algorytmów szyfrujących i haszujących w celu umożliwienia bezpiecznego przechowywania haseł.
+    Opracowanie lub wykorzystanie i dostosowanie gotowych algorytmów szyfrujących i haszujących w celu umożliwienia bezpiecznego przechowywania haseł. #Michał punkt zrobienia
 
-    Zaprojektowanie i wdrożenie mechanizmu rejestracji i logowania na główne konto użytkownika aplikacji oraz funkcji odzyskiwania hasła.
+    Zaprojektowanie i wdrożenie mechanizmu rejestracji i logowania na główne konto użytkownika aplikacji oraz funkcji odzyskiwania hasła. #Dawid punkt do zrobienia 
 
     OPCJONALNE: Dodanie i wdrożenie uwierzytelniania dwuskladnikowego.
 
@@ -23,5 +23,3 @@ Plan pracy praktyk - Grupa A
     Wygenerowanie gotowych tabel wraz z relacjami na podstawie utworzonych w poprzednim punkcie obiektów.
 
     Utworzenie graficznego interfejsu użytkownika GUI aplikacji stanowiącego interfejs zaprojektowanych funkcjonalności.
-
-
