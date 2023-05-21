@@ -1,0 +1,1 @@
+# Funkcja SHA-256
