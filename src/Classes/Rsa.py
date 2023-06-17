@@ -4,7 +4,9 @@ class Rsa:
     """ Class implements the Rsa asymmetric encryption algorithm """
 
     @staticmethod
-    def __is_prime(n: int, k: int = 10) -> bool:
+    def __is_prime(n: int, 
+                   k: int = 10
+                   ) -> bool:
         """ Private method check if numer is prime """
         
         if n <= 1:
@@ -38,7 +40,8 @@ class Rsa:
         return True
 
     @staticmethod
-    def __generate_primes(bits: int) -> list:
+    def __generate_primes(bits: int
+                          ) -> list:
         """ Generate pair of prime numbers p i q whose total length is bits  """
         
         p = getrandbits(bits // 2) | 1
@@ -53,7 +56,9 @@ class Rsa:
         return [p, q]
 
     @staticmethod
-    def __gcd(a: int, b: int) -> int:
+    def __gcd(a: int, 
+              b: int
+              ) -> int:
         """ Private method - calculate greatest common divisor function of two numbers """
         
         while b != 0:
@@ -62,9 +67,12 @@ class Rsa:
         return a
 
     @staticmethod
-    def __extended_gcd(a: int, b: int) -> list:
+    def __extended_gcd(a: int, 
+                       b: int
+                       ) -> list:
         """ Private method - calculates the greatest common divisor (gcd) of two integers 
-        while simultaneously finding the coefficients that satisfy Bézout's identity """
+            while simultaneously finding the coefficients that satisfy Bézout's identity 
+        """
         
         x, y, u, v = 0, 1, 1, 0
 
@@ -77,7 +85,9 @@ class Rsa:
         return [gcd, x, y]
 
     @staticmethod
-    def __mod_inverse(a: int, m: int) -> int:
+    def __mod_inverse(a: int, 
+                      m: int
+                      ) -> int:
         """ Private method calculates the modular inverse of a number modulo a given modulus """
         
         g, x, y = Rsa.__extended_gcd(a, m)
@@ -86,7 +96,8 @@ class Rsa:
         return x % m
 
     @staticmethod
-    def generate_key_pair(bits: int = 2048) -> list:
+    def generate_key_pair(bits: int = 2048
+                          ) -> list:
         """ Generates public and private keys"""
 
         if bits == 0 or bits % 256 != 0:
@@ -111,7 +122,9 @@ class Rsa:
         return public_key, private_key
 
     @staticmethod
-    def encrypt(message: str, public_key: list) -> int:
+    def encrypt(message: str, 
+                public_key: list
+                ) -> int:
         """ Encrypt message with given public key """
         
         try:
@@ -124,7 +137,9 @@ class Rsa:
         return encrypted_message
 
     @staticmethod
-    def decrypt(encrypted_message: str, private_key: list):
+    def decrypt(encrypted_message: str, 
+                private_key: list
+                ):
         """ Decrypt encrypted message with given private key """
 
         try:

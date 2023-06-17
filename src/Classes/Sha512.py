@@ -48,17 +48,22 @@ class Sha512:
         return [round_constants, hash_constants]
     
     @staticmethod
-    def __shift_right(x: int, n: int) -> int: 
+    def __shift_right(x: int, 
+                      n: int
+                      ) -> int: 
         """ Private method shift bits in x variable n times """
         return x >> n
 
     @staticmethod
-    def __right_rotate(x: int, n: int) -> int:
+    def __right_rotate(x: int, 
+                       n: int
+                       ) -> int:
         " Private method rotate bits in x variable n times "
         return (x >> n) | (x << (64 - n)) & 0xFFFFFFFFFFFFFFFF
     
     @staticmethod
-    def hash_message(message: str) -> str:
+    def hash_message(message: str
+                     ) -> str:
         "Hash given message"
 
         # Initialize round constants
