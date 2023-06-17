@@ -1,4 +1,4 @@
-class Sha:
+class Sha512:
     """ Class implements the SHA-512 cryptographic hash algorithm  """
  
     @staticmethod
@@ -62,7 +62,7 @@ class Sha:
         "Hash given message"
 
         # Initialize round constants
-        round_constants = Sha.__initialize_constants()[0]
+        round_constants = Sha512.__initialize_constants()[0]
 
         # Raise error if input message is not string
         if type(message) is not str:
@@ -83,7 +83,7 @@ class Sha:
         message_array.extend(message_len.to_bytes(16))
 
         # Initialize initial hash constants
-        hash = Sha.__initialize_constants()[1]
+        hash = Sha512.__initialize_constants()[1]
 
         # For every part of message which is 1024 bits block
         for chunk_start in range(0, len(message_array), 128):
@@ -99,19 +99,19 @@ class Sha:
 
             # Extend words into table of 80 words 
             for i in range(16, 80):
-                s0 = (Sha.__right_rotate(w[i - 15], 1) ^ Sha.__right_rotate(w[i - 15], 8) ^ Sha.__shift_right(w[i - 15], 7))
-                s1 = (Sha.__right_rotate(w[i - 2], 19) ^ Sha.__right_rotate(w[i - 2], 61) ^ Sha.__shift_right(w[i - 2], 6))
+                s0 = (Sha512.__right_rotate(w[i - 15], 1) ^ Sha512.__right_rotate(w[i - 15], 8) ^ Sha512.__shift_right(w[i - 15], 7))
+                s1 = (Sha512.__right_rotate(w[i - 2], 19) ^ Sha512.__right_rotate(w[i - 2], 61) ^ Sha512.__shift_right(w[i - 2], 6))
                 w[i] = (w[i - 16] + s0 + w[i - 7] + s1) & 0xFFFFFFFFFFFFFFFF
 
             # Initialize initial_hash
-            a, b, c, d, e, f, g, h = Sha.__initialize_constants()[1]
+            a, b, c, d, e, f, g, h = Sha512.__initialize_constants()[1]
 
             # Main proccess of the hash algorithm
             for i in range(80):
-                sum1 = (Sha.__right_rotate(e, 14) ^ Sha.__right_rotate(e, 18) ^ Sha.__right_rotate(e, 41))
+                sum1 = (Sha512.__right_rotate(e, 14) ^ Sha512.__right_rotate(e, 18) ^ Sha512.__right_rotate(e, 41))
                 ch = (e & f) ^ (~e & g)
                 temp1 = h + sum1 + ch + round_constants[i] + w[i]
-                sum0 = (Sha.__right_rotate(a, 28) ^ Sha.__right_rotate(a, 34) ^ Sha.__right_rotate(a, 39))
+                sum0 = (Sha512.__right_rotate(a, 28) ^ Sha512.__right_rotate(a, 34) ^ Sha512.__right_rotate(a, 39))
                 maj = (a & b) ^ (a & c) ^ (b & c)
                 temp2 = sum0 + maj
                 h = g
@@ -145,15 +145,15 @@ class Sha:
     def compare_to_hash(message: str, hash: str) -> bool:
         """ Check if given message hash is equal to given hash """
 
-        return Sha.hash_message(message) == hash
+        return Sha512.hash_message(message) == hash
     
 # Class functionality test
 if __name__ == "__main__":
-    assert Sha.hash_message('Moja') == '14426416d8c25da4b186535c9ca1bd1e985cab25f2d1cac209641aafdf0f6ab2001623a08eb7e2430c453d8c8265c0ef1ef5d12896c4bb9df528b157787aa128'
-    assert Sha.hash_message('Moja wiadomość') == '35ef55469e3056577ce1cd52458edf95e9cd5223ed82171db06c7ba4311e42b10ddf519b239914da8045c631c3de62ed4db059ec0895499fa376b01de59fd822'
-    assert Sha.hash_message('Moja') == Sha.hash_message('Moja')
-    assert Sha.hash_message('Moja wiadomość') == Sha.hash_message('Moja wiadomość')
-    assert Sha.compare_to_hash('Moja', Sha.hash_message('Moja')) == True
-    assert Sha.compare_to_hash('Moja wiadomość', Sha.hash_message('Moja wiadomość')) == True
-    assert Sha.compare_to_hash('Moja', Sha.hash_message('Moja wiadomość')) == False
-    assert Sha.compare_to_hash('Moja wiadomość', Sha.hash_message('Moja')) == False
+    assert Sha512.hash_message('Moja') == '14426416d8c25da4b186535c9ca1bd1e985cab25f2d1cac209641aafdf0f6ab2001623a08eb7e2430c453d8c8265c0ef1ef5d12896c4bb9df528b157787aa128'
+    assert Sha512.hash_message('Moja wiadomość') == '35ef55469e3056577ce1cd52458edf95e9cd5223ed82171db06c7ba4311e42b10ddf519b239914da8045c631c3de62ed4db059ec0895499fa376b01de59fd822'
+    assert Sha512.hash_message('Moja') == Sha512.hash_message('Moja')
+    assert Sha512.hash_message('Moja wiadomość') == Sha512.hash_message('Moja wiadomość')
+    assert Sha512.compare_to_hash('Moja', Sha512.hash_message('Moja')) == True
+    assert Sha512.compare_to_hash('Moja wiadomość', Sha512.hash_message('Moja wiadomość')) == True
+    assert Sha512.compare_to_hash('Moja', Sha512.hash_message('Moja wiadomość')) == False
+    assert Sha512.compare_to_hash('Moja wiadomość', Sha512.hash_message('Moja')) == False
