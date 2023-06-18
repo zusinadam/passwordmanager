@@ -3,6 +3,7 @@ from tkinter import messagebox
 from Database import Database
 from Password import Password
 
+
 class PasswordManagerGUI:
     def __init__(self):
         self.db = Database(database_name='menadzerhasel')
@@ -10,7 +11,8 @@ class PasswordManagerGUI:
 
         self.root = tk.Tk()
         self.root.title("Password Manager")
-        
+        self.root.configure(bg="black")  # Ustawienie czarnego tła dla root
+
         # Ustawienie wymiarów okna na 3/4 ekranu
         screen_width = self.root.winfo_screenwidth()
         screen_height = self.root.winfo_screenheight()
@@ -20,20 +22,23 @@ class PasswordManagerGUI:
         y = (screen_height - window_height) // 2
         self.root.geometry(f"{window_width}x{window_height}+{x}+{y}")
 
-        self.login_frame = tk.Frame(self.root)
-        self.login_frame.pack()
+        self.login_frame = tk.Frame(self.root, bg="black")  # Ustawienie czarnego tła dla login_frame
+        self.login_frame.pack(expand=True)
 
-        self.email_label = tk.Label(self.login_frame, text="Email:")
+        self.center_frame = tk.Frame(self.login_frame, bg="black")  # Ramka do wyśrodkowania pól
+        self.center_frame.pack(pady=50)
+
+        self.email_label = tk.Label(self.center_frame, text="Email:", bg="black", fg="white")
         self.email_label.grid(row=0, column=0)
-        self.email_entry = tk.Entry(self.login_frame)
+        self.email_entry = tk.Entry(self.center_frame)
         self.email_entry.grid(row=0, column=1)
 
-        self.password_label = tk.Label(self.login_frame, text="Password:")
+        self.password_label = tk.Label(self.center_frame, text="Password:", bg="black", fg="white")
         self.password_label.grid(row=1, column=0)
-        self.password_entry = tk.Entry(self.login_frame, show="*")
+        self.password_entry = tk.Entry(self.center_frame, show="*")
         self.password_entry.grid(row=1, column=1)
 
-        self.login_button = tk.Button(self.login_frame, text="Login", command=self.login)
+        self.login_button = tk.Button(self.center_frame, text="Login", command=self.login, bg="black", fg="white")
         self.login_button.grid(row=2, columnspan=2)
 
         self.root.mainloop()
@@ -58,22 +63,28 @@ class PasswordManagerGUI:
     def show_passwords(self):
         self.login_frame.destroy()
 
-        self.passwords_frame = tk.Frame(self.root)
-        self.passwords_frame.pack()
+        self.passwords_frame = tk.Frame(self.root, bg="black")  # Ustawienie czarnego tła dla passwords_frame
+        self.passwords_frame.pack(expand=True)
 
-        self.generate_password_button = tk.Button(self.passwords_frame, text="Generate Password", command=self.generate_password)
+        self.center_frame = tk.Frame(self.passwords_frame, bg="black")  # Ramka do wyśrodkowania przycisków
+        self.center_frame.pack(pady=50)
+
+        self.generate_password_button = tk.Button(self.center_frame, text="Generate Password",
+                                                  command=self.generate_password, bg="black", fg="white")
         self.generate_password_button.pack()
 
-        self.logout_button = tk.Button(self.passwords_frame, text="Logout", command=self.logout)
+        self.logout_button = tk.Button(self.center_frame, text="Logout", command=self.logout, bg="black", fg="white")
         self.logout_button.pack()
 
         # Dodawanie checkboxów
         self.checkbox_var1 = tk.IntVar()
-        self.checkbox1 = tk.Checkbutton(self.passwords_frame, text="Option 1", variable=self.checkbox_var1)
+        self.checkbox1 = tk.Checkbutton(self.center_frame, text="Option 1", variable=self.checkbox_var1, bg="black",
+                                        fg="white")
         self.checkbox1.pack()
 
         self.checkbox_var2 = tk.IntVar()
-        self.checkbox2 = tk.Checkbutton(self.passwords_frame, text="Option 2", variable=self.checkbox_var2)
+        self.checkbox2 = tk.Checkbutton(self.center_frame, text="Option 2", variable=self.checkbox_var2, bg="black",
+                                        fg="white")
         self.checkbox2.pack()
 
     def generate_password(self):
@@ -83,13 +94,17 @@ class PasswordManagerGUI:
     def logout(self):
         self.logged_in = False
         self.passwords_frame.destroy()
-        self.login_frame = tk.Frame(self.root)
-        self.login_frame.pack()
+        self.login_frame = tk.Frame(self.root, bg="black")  # Ustawienie czarnego tła dla login_frame
+        self.login_frame.pack(expand=True)
+
+        self.center_frame = tk.Frame(self.login_frame, bg="black")  # Ramka do wyśrodkowania pól
+        self.center_frame.pack(pady=50)
 
         self.email_entry.delete(0, tk.END)
         self.password_entry.delete(0, tk.END)
 
         self.email_entry.focus()
+
 
 if __name__ == "__main__":
     PasswordManagerGUI()

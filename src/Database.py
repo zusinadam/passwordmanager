@@ -67,17 +67,16 @@ class Database():
         return True
 
     def disconnect(self) -> None:
-        """ Disconnect with database """
+        """ Disconnect with the database """
 
-        # Try disconnect with database
-        try:
+        # Check if a connection exists before trying to close it
+        if self.connection is not None:
             self.connection.close()
-        
-        # Finally set class defaults for connection data
-        finally:
-            self.connection_engine = None
-            self.connection = None
-            self.error_code = None
+
+        # Finally, set class defaults for connection data
+        self.connection_engine = None
+        self.connection = None
+        self.error_code = None
 
     def reconnect(self) -> bool:
         """ Try reconnect connection with database """
