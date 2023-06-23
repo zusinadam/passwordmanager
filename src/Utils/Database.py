@@ -227,7 +227,6 @@ class User(Database.connection_base):
         finally:
             self.session = None
     
-    @classmethod
     def is_logged(self) -> list:
         """ Check if user is alredy logged """
 
@@ -235,7 +234,6 @@ class User(Database.connection_base):
             return [False, 'User is not logged.']
         return [True, 'User is logged in.']
 
-    @classmethod
     def change_password(self, old_password: str, new_password: str, new_password2: str) -> list:
         """ Change connection of the user """
 
@@ -248,7 +246,7 @@ class User(Database.connection_base):
         if new_password != new_password2:
             return [False, 'New password not repeated correctly']
         
-        if not self.verify_password(old_password):
+        if not self.verify_password(password=old_password):
             return [False, 'Old password is not correct.']
         
         if not Password.validate(new_password)[0]:
@@ -265,7 +263,6 @@ class User(Database.connection_base):
                 return [False, 'Error occured during password modification.']   
 
         return [True, 'Password was changed.']
-
 
 class UserPassword(Database.connection_base):
     """ Class represents users passwords table """

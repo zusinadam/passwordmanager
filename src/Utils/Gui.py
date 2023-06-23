@@ -317,6 +317,7 @@ class PasswordManagerGUI:
                         
     def retrive_password(self, userPasswords, index: int) -> None:
         """Show message box with retrived password """
+        self.retrive_password_entry.delete(0, tk.END)
         self.retrive_password_entry.insert(0, userPasswords[index].restore()[1])
         messagebox.showinfo('Success', 'Retrived password for ' + userPasswords[index].password_label)
 
@@ -414,12 +415,14 @@ class PasswordManagerGUI:
             try:
                 password =  Password.generate(min_length, max_length, letters, lowercase, uppercase, digits, punctuations, reccuring_type)
                 self.show_generate_password(False)
+                self.generated_password_entry.delete(0, tk.END)
                 self.generated_password_entry.insert(0, password)
                 messagebox.showinfo('Success', 'Password was generated correctly')
 
             # Show criteria is not correct
             except ValueError as e:
                 self.show_generate_password(False)
+                self.generated_password_entry.delete(0, tk.END)
                 self.generated_password_entry.insert(0, '')
                 messagebox.showwarning('Generate Password Failed', e.args)
 
