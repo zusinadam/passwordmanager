@@ -2,26 +2,26 @@ Temat: Menadżer haseł
 
 Plan pracy praktyk - Grupa A
 
-    Utworzenie projektu na platformie GitHub. #Michał - zrobione
+    Utworzenie projektu na platformie GitHub. #zrobione
 
-    Utworzenie szkieletu aplikacji. #Michał - zrobione
+    Utworzenie szkieletu aplikacji. #zrobione
 
-    Utworzenie i nawiązanie połączenia z pustą bazą danych. #Michał - zrobione
+    Utworzenie i nawiązanie połączenia z pustą bazą danych. #zrobione
 
-    Opracowanie algorytmu pozwalającego na generowanie bezpiecznych haseł. #Adam - zrobione
+    Opracowanie algorytmu pozwalającego na generowanie bezpiecznych haseł. #zrobione
 
-    Opracowanie algorytmu hashującego wiadomości w celu umożliwienia bezpiecznego przechowywania haseł. #Michał - zrobione
+    Opracowanie algorytmu hashującego wiadomości w celu umożliwienia bezpiecznego przechowywania haseł. #zrobione
 
-    Opracowanie algorytmu szyfrującego wiadomości w celu umożliwienia bezpiecznego przechowywania haseł. #Michał - zrobione
+    Opracowanie algorytmu szyfrującego wiadomości w celu umożliwienia bezpiecznego przechowywania haseł. #zrobione
 
-    Zaprojektowanie i wdrożenie mechanizmu rejestracji i logowania na główne konto użytkownika aplikacji oraz funkcji odzyskiwania hasła. #Michał
+    Zaprojektowanie i wdrożenie mechanizmu rejestracji i logowania na główne konto użytkownika aplikacji oraz funkcji zmiany hasła. #zrobione
 
-    OPCJONALNE: Dodanie i wdrożenie uwierzytelniania dwuskladnikowego.
+    OPCJONALNE: Dodanie i wdrożenie uwierzytelniania dwuskladnikowego. #odrzucone
 
-    Zaprojektowanie tabel i ich relacji wymaganych do poprawnego działania aplikacji.
+    Zaprojektowanie tabel i ich relacji wymaganych do poprawnego działania aplikacji. #zrobione
 
-    Wykorzystanie mechanizmu ORM (mechanizmu mapowania obiektowo-relacyjnego) w celu odwzorowania i wygenerowania zaprojektowanych w poprzednim punkcie tabel i relacji pod postacią obiektów.
+    Wykorzystanie mechanizmu ORM (mechanizmu mapowania obiektowo-relacyjnego) w celu odwzorowania i wygenerowania zaprojektowanych w poprzednim punkcie tabel i relacji pod postacią obiektów. #zrobione
 
-    Wygenerowanie gotowych tabel wraz z relacjami na podstawie utworzonych w poprzednim punkcie obiektów.
+    Wygenerowanie gotowych tabel wraz z relacjami na podstawie utworzonych w poprzednim punkcie obiektów. #zrobione
 
-    Utworzenie graficznego interfejsu użytkownika GUI aplikacji stanowiącego interfejs zaprojektowanych funkcjonalności.
+    Utworzenie graficznego interfejsu użytkownika GUI aplikacji stanowiącego interfejs zaprojektowanych funkcjonalności. #zrobione

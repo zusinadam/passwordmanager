@@ -1,4 +1,5 @@
 from random import getrandbits, randint, randrange
+from sympy import Integer
 
 class Rsa:
     """ Class implements the Rsa asymmetric encryption algorithm """
@@ -153,6 +154,24 @@ class Rsa:
             return None
         
         return decrypted_message
+
+    @staticmethod
+    def key_to_str(key: list) -> str:
+        """ Private method convert key to string """
+        return str(key[1]) + '_' + str(key[0])
+
+    @staticmethod
+    def str_to_key(str_key: str) -> list:
+        """ Private method convert string to key """
+        a, b = str.split(str_key, '_')
+
+        return [int(Integer(b)), int(Integer(a))]
+
+    @staticmethod
+    def str_to_int(str: str) -> int:
+        """ Private methodd convert string to in """
+        return int(Integer(str))
+
 
 # Class functionality test
 if __name__ == "__main__":

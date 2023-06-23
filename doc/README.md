@@ -2,3 +2,4 @@
 #   SQLAlchemy
 #   sqlalchemy-utils
 #   psycopg2
+#   sympy

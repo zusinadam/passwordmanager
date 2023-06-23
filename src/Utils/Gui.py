@@ -1,12 +1,12 @@
 import tkinter as tk
 from tkinter import messagebox
-from Utils.Database import Database, User
+from Utils.Database import Database, User, UserPassword
 from Utils.Password import Password
 
 class PasswordManagerGUI:
     ''' Class shows application user interface and use utils class to handle application logic '''
 
-    def __init__(self):
+    def __init__(self) -> None:
         ''' Initialize class and show welcome window od the Application'''
 
         # Intialize connection to database
@@ -34,21 +34,24 @@ class PasswordManagerGUI:
         # Start main loop of the program
         self.root.mainloop()
 
-    def logout(self):
+    def logout(self) -> None:
         if not self.user == None:
-            self.user[1].logout()
+            if not self.user[1] == None:
+                self.user[1].logout()
             self.user == None
 
         self.show_login(True)
 
-    def exit(self):
+    def exit(self) -> None:
         """ End execution of application """
         if not self.user == None:
-            self.user[1].logout()
+            if not self.user[1] == None:
+                self.user[1].logout()
+            self.user == None
         self.db.disconnect()
         exit(0) 
 
-    def show_login(self, destroy = True):
+    def show_login(self, destroy = True) -> None:
         """ Draw login frame """
         
         if destroy and self.frame != None:
@@ -80,7 +83,7 @@ class PasswordManagerGUI:
             self.exit_button = tk.Button(self.center_frame, text='Exit', command=self.exit, bg='#1A1A1A', fg='white', padx='31')
             self.exit_button.grid(row=4, column=1, pady='3', padx='10')
 
-    def login(self, show=False):
+    def login(self, show=False) -> None:
         """ Handle login menu operations """
 
         self.show_login(False)
@@ -108,7 +111,7 @@ class PasswordManagerGUI:
         else:
             messagebox.showerror('Database Error', 'Could not connect to the database')
 
-    def show_register(self, destroy = True):
+    def show_register(self, destroy = True) -> None:
         """ Draw register frame """
         
         if destroy and self.frame != None:
@@ -146,7 +149,7 @@ class PasswordManagerGUI:
             self.back_button = tk.Button(self.center_frame, text='Back', command=self.show_login, bg='#1A1A1A', fg='white', padx='31')
             self.back_button.grid(row=5, column=1, pady='3', padx='10')
 
-    def register(self):
+    def register(self) -> None:
         """ Handle register user operations """
 
         self.show_register(False)
@@ -176,7 +179,7 @@ class PasswordManagerGUI:
             messagebox.showerror('Database Error', 'Could not connect to the database.')
             self.logout()
 
-    def show_menu(self, destroy = True):
+    def show_menu(self, destroy = True) -> None:
 
         if self.user == None or not self.db.is_connected():
             messagebox.showwarning('Session', 'User is not logged in.')
@@ -196,10 +199,10 @@ class PasswordManagerGUI:
             self.center_frame.pack(pady=50)
 
             # Set fields used for menu 
-            #self.store_password_button = tk.Button(self.center_frame, text='Store password', command=self.register, bg='#1A1A1A', fg='white', padx='19')
-            #self.store_password_button.grid(row=0, column=1, pady='3', padx='20')
-            #self.retrive_password_button = tk.Button(self.center_frame, text='Retrive password', command=self.register, bg='#1A1A1A', fg='white', padx='19')
-            #self.retrive_password_button.grid(row=1, column=1, pady='3', padx='18')          
+            self.store_password_button = tk.Button(self.center_frame, text='Store password', command=self.show_store_password, bg='#1A1A1A', fg='white', padx='19')
+            self.store_password_button.grid(row=0, column=1, pady='3', padx='20')
+            self.retrive_password_button = tk.Button(self.center_frame, text='Retrive password', command=self.show_retrive_password, bg='#1A1A1A', fg='white', padx='19')
+            self.retrive_password_button.grid(row=1, column=1, pady='3', padx='18')          
             self.generate_password_button = tk.Button(self.center_frame, text='Generate password', command=self.show_generate_password, bg='#1A1A1A', fg='white', padx='19')
             self.generate_password_button.grid(row=2, column=1, pady='3', padx='10')
             self.change_password_button = tk.Button(self.center_frame, text='Change password', command=self.show_change_password, bg='#1A1A1A', fg='white', padx='19')
@@ -207,14 +210,117 @@ class PasswordManagerGUI:
             self.logout_button = tk.Button(self.center_frame, text='Logout', command=self.logout, bg='#1A1A1A', fg='white', padx='31')
             self.logout_button.grid(row=5, column=1, pady='3', padx='10')   
 
-    @staticmethod
-    def toggle_checkbox(checkbox: tk.Checkbutton, var: tk.BooleanVar) -> None:
-        """ Change checkbox state and toogle value """
-        current_state = var.get()
-        var.set(not current_state)
-        checkbox.configure(state=tk.NORMAL if current_state else tk.ACTIVE)
 
-    def show_generate_password(self, destroy = True):
+    def show_store_password(self, destroy = True) -> None:  
+        """ Draw store password frame """
+        if self.user == None or not self.db.is_connected():
+            messagebox.showwarning('Session', 'User is not logged in.')
+            self.logout()
+
+        if destroy and self.frame != None:
+            self.frame.destroy()
+            self.frame = None
+
+        if self.frame == None:
+            # Set default frame background color
+            self.frame = tk.Frame(self.root, bg='#1A1A1A')  
+            self.frame.pack(expand=True)
+
+            # Frame responsible used to center fields in frame
+            self.center_frame = tk.Frame(self.frame, bg='#1A1A1A')
+            self.center_frame.pack(pady=50)
+
+            # Set fields for generate password frame
+            self.label = tk.Label(self.center_frame, text='Label:', bg='#1A1A1A', fg='white')
+            self.label.grid(row=0, column=0, pady='7')
+            self.label_entry = tk.Entry(self.center_frame)
+            self.label_entry.grid(row=0, column=1, pady='7', columnspan=2)
+            self.password = tk.Label(self.center_frame, text='Password:', bg='#1A1A1A', fg='white')
+            self.password.grid(row=1, column=0, pady='7')
+            self.password_entry = tk.Entry(self.center_frame, show='*')
+            self.password_entry.grid(row=1, column=1, pady='7', columnspan=2)
+            self.store_password_button = tk.Button(self.center_frame, text='Store password', command=self.store_password, bg='#1A1A1A', fg='white')
+            self.store_password_button.grid(row=2, column=1, pady='3', padx='10') 
+            self.back_button = tk.Button(self.center_frame, text='Back', command=self.show_menu, bg='#1A1A1A', fg='white', padx='31')
+            self.back_button.grid(row=3, column=1, pady='3', padx='10')   
+
+    def store_password(self) -> None:
+        """ Handle store password operation """
+
+        if self.user == None or not self.db.is_connected():
+            messagebox.showwarning('Session', 'User is not logged in.')
+            self.logout()
+
+        self.show_store_password(False)
+
+        label = self.label_entry.get()
+        password = self.password_entry.get()
+
+        # Check if application is connected do database
+        if self.db.is_connected():
+
+            # Try store user password
+            x = UserPassword.store(label, password, self.user[1], self.db.connection_engine)
+
+            # Check if user password changed
+            if x[0]:
+                self.show_store_password(True)
+                messagebox.showinfo('Success', 'User password was stored.')
+
+            # Show user username or password is incorrect
+            else:
+                self.show_store_password(False)
+                messagebox.showwarning('Store Password Failed', x[1])
+        else:
+            messagebox.showerror('Database Error', 'Could not connect to the database.')
+            self.logout()
+
+    def show_retrive_password(self, destroy = True) -> None:
+        """ Draw retrive frame password """
+
+        if self.user == None or not self.db.is_connected():
+            messagebox.showwarning('Session', 'User is not logged in.')
+            self.logout()
+
+        if destroy and self.frame != None:
+            self.frame.destroy()
+            self.frame = None
+
+        if self.frame == None:
+            # Set default frame background color
+            self.frame = tk.Frame(self.root, bg='#1A1A1A')  
+            self.frame.pack(expand=True)
+
+            # Frame responsible used to center fields in frame
+            self.center_frame = tk.Frame(self.frame, bg='#1A1A1A')
+            self.center_frame.pack(pady=50)
+
+            self.retrive_password_entry = tk.Entry(self.center_frame)
+            self.retrive_password_entry.grid(row=0, column=1, pady='0', padx='10')
+            self.retrive_password_entry.insert(0, '')
+            self.back_button = tk.Button(self.center_frame, text='Back', command=self.show_menu, bg='#1A1A1A', fg='white', padx='31')
+            self.back_button.grid(row=1, column=1, pady='16', padx='10')
+
+            userPassword = UserPassword.get_for_user(self.user[1], self.db.connection_engine)
+
+            if not userPassword[0]:
+                messagebox.showerror('Database Error', userPassword[1])
+            else:
+                if userPassword[1].count() < 1:
+                    messagebox.showinfo('Not found', 'User don\'t store any password.')
+                else:
+                    for i in range (userPassword[1].count()):
+                        button = tk.Button(self.center_frame, text=userPassword[1][i].password_label, bg='#1A1A1A', fg='white', 
+                                           padx='31' , command=lambda i=i: self.retrive_password(userPassword[1], i))
+                        button.grid(row=i+2, column=1, pady='3', padx='10')
+                        
+                        
+    def retrive_password(self, userPasswords, index: int) -> None:
+        """Show message box with retrived password """
+        self.retrive_password_entry.insert(0, userPasswords[index].restore()[1])
+        messagebox.showinfo('Success', 'Retrived password for ' + userPasswords[index].password_label)
+
+    def show_generate_password(self, destroy = True) -> None:
         """ Draw generate password frame """
 
         if self.user == None or not self.db.is_connected():
@@ -277,10 +383,13 @@ class PasswordManagerGUI:
             self.reccuring_type_checkbox.grid(row=7, column=1, pady='3', padx='10') 
             self.generate_password_button = tk.Button(self.center_frame, text='Generate Password', command=self.generate_password, bg='#1A1A1A', fg='white')
             self.generate_password_button.grid(row=8, column=1, pady='3', padx='10') 
+            self.generated_password_entry = tk.Entry(self.center_frame)
+            self.generated_password_entry.grid(row=9, column=1, pady='0', padx='10')
+            self.generated_password_entry.insert(0, '')
             self.back_button = tk.Button(self.center_frame, text='Back', command=self.show_menu, bg='#1A1A1A', fg='white', padx='31')
-            self.back_button.grid(row=9, column=1, pady='3', padx='10')   
+            self.back_button.grid(row=10, column=1, pady='3', padx='10')   
 
-    def generate_password(self):
+    def generate_password(self) -> None:
         """ Handle generate password operations """
         
         if self.user == None or not self.db.is_connected():
@@ -305,18 +414,20 @@ class PasswordManagerGUI:
             try:
                 password =  Password.generate(min_length, max_length, letters, lowercase, uppercase, digits, punctuations, reccuring_type)
                 self.show_generate_password(False)
-                messagebox.showinfo('Generated password', password)
+                self.generated_password_entry.insert(0, password)
+                messagebox.showinfo('Success', 'Password was generated correctly')
 
             # Show criteria is not correct
             except ValueError as e:
                 self.show_generate_password(False)
+                self.generated_password_entry.insert(0, '')
                 messagebox.showwarning('Generate Password Failed', e.args)
 
         else:
             messagebox.showerror('Database Error', 'Could not connect to the database.')
             self.logout()
 
-    def show_change_password(self, destroy = True):
+    def show_change_password(self, destroy = True) -> None:
         """ Draw change password frame """
         
         if self.user == None or not self.db.is_connected():
@@ -355,7 +466,7 @@ class PasswordManagerGUI:
             self.back_button = tk.Button(self.center_frame, text='Back', command=self.show_menu, bg='#1A1A1A', fg='white', padx='31')
             self.back_button.grid(row=4, column=1, pady='3', padx='10')
 
-    def change_password(self):
+    def change_password(self) -> None:
         """ Handle register user operations """
         
         if self.user == None or not self.db.is_connected():
@@ -375,15 +486,14 @@ class PasswordManagerGUI:
             x = self.user[1].change_password(old_password=password, new_password=password1, new_password2=password2)
             
             # Check if user password changed
-            if self.user[0]:
-                self.user = None
+            if x[0]:
                 self.show_change_password(True)
                 messagebox.showinfo('Success', 'User password was changed.')
 
             # Show user username or password is incorrect
             else:
                 self.show_change_password(False)
-                messagebox.showwarning('Change Password Failed', self.user[1])
+                messagebox.showwarning('Change Password Failed', x[1])
         else:
             messagebox.showerror('Database Error', 'Could not connect to the database.')
             self.logout()

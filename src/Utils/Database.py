@@ -1,8 +1,9 @@
-from sqlalchemy import create_engine, Column, String, BigInteger, DateTime, Boolean, ForeignKey
+from sqlalchemy import create_engine, Column, String, BigInteger, DateTime, Text, ForeignKey
 from sqlalchemy.exc import SQLAlchemyError
-from sqlalchemy.orm import declarative_base, sessionmaker, validates
+from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy_utils import EmailType
 from datetime import datetime
+from Utils.Rsa import Rsa
 from Utils.Sha512 import Sha512
 from Utils.Password import Password
 from re import compile, fullmatch
@@ -105,8 +106,6 @@ class Database:
             print(f"Error while reconnect connection to database: {e}")
             return False
     
-#####################################################
-# Klasy nie gotowe
 class User(Database.connection_base):
     """ Class represents users table """
 
@@ -118,7 +117,7 @@ class User(Database.connection_base):
     username = Column(String(50), unique=True, nullable=False)
     email = Column(EmailType, unique=True, nullable=False)
     _password_hash = Column(String(128), nullable=False)
-    registered_at = Column(DateTime, default=datetime.utcnow)
+    created_date = Column(DateTime, default=datetime.utcnow)
     session = None
     
     @property
@@ -240,6 +239,12 @@ class User(Database.connection_base):
     def change_password(self, old_password: str, new_password: str, new_password2: str) -> list:
         """ Change connection of the user """
 
+        if old_password == None or old_password == '':
+            return [False, 'Entry old password.']
+        
+        if new_password == None or new_password == '':
+            return [False, 'Entry old password.']
+
         if new_password != new_password2:
             return [False, 'New password not repeated correctly']
         
@@ -269,15 +274,88 @@ class UserPassword(Database.connection_base):
     __tablename__ = 'users_passwords'
 
     # Declare table columns
-    id = Column(BigInteger, primary_key=True)
+    id = Column(BigInteger, primary_key=True, autoincrement=True)
     user_id = Column(BigInteger, ForeignKey('users.id'), primary_key=True)
-    password_label = Column(String(50), nullable=False)
-    password = Column(String(128), nullable=False)
-    password_key = Column(String(50), nullable=False, unique=True)
-    created_at = Column(DateTime, nullable=False)
+    password_label = Column(String(25), nullable=False)
+    password = Column(Text, nullable=False)
+    password_key = Column(Text, nullable=False)
+    created_date = Column(DateTime, nullable=False, default=datetime.utcnow)
     session = None
 
-## TEST SECTION #############
+    @classmethod
+    def store(self, label: str, password: str, user: User, engine) -> list:
+        """ Store  password """
+        
+        if len(label) < 4:
+            return [False, 'Label is too short. Minimum length is 4']
+
+        if len(label) > 25:
+            return [False, 'Label is too long. Maximum length is 25']
+
+        if len(password) < 2:
+            return [False, 'Password is too short. Minimum length is 2']
+
+        if len(password) > 500:
+            return [False, 'Password is too long. Maximum length is 500']  
+
+        if user == None or not user.is_logged()[0]:
+            return [False, 'User is not logged.']
+        
+        self.session = sessionmaker(bind=engine)()
+        user = self.session.query(User).filter_by(username=user.username).first()
+        self.session.close()
+        self.session = None
+
+        if not user:
+            return [False, 'User is not logged.']
+        
+        public_key, private_key = Rsa.generate_key_pair()
+
+        encrypted_password = Rsa.encrypt(password, public_key)
+        key_str = Rsa.key_to_str(private_key)
+
+        userPassword = self(user_id=user.id, password_label=label, password=encrypted_password, password_key=key_str)
+
+        self.session = sessionmaker(bind=engine)()
+        try:
+            self.session.add(userPassword)
+            self.session.commit()
+            self.session.close()
+            return [True, user]
+        except SQLAlchemyError as e:
+            try:
+                return [False, str.capitalize(str.replace(str.replace(str.replace(str.strip(str.split(e.args[0], 'DETAIL:  Key')[1]), '(', ''), ')', ''), '=', ' '))]
+            except:
+                return [False, 'Error occured during password store.']   
+    
+    def restore(self) -> list:
+        """ Restore password from database """
+
+        try:
+            key_int = Rsa.str_to_key(self.password_key)
+            password_encrypted = Rsa.str_to_int(self.password)
+            password = Rsa.decrypt(password_encrypted, key_int)
+
+            return [True, password]
+        except:
+            [False, 'Password don\'t exist.']
+
+    @classmethod
+    def get_for_user(self, user: User, engine) -> list: 
+
+        try:
+            session = sessionmaker(bind=engine)()
+            userPassword = session.query(self).filter_by(user_id=user.id).order_by(self.created_date)
+            session.close()
+            session = None
+            return [True, userPassword]
+        except SQLAlchemyError as e:
+            try:
+                return [False, str.capitalize(str.replace(str.replace(str.replace(str.strip(str.split(e.args[0], 'DETAIL:  Key')[1]), '(', ''), ')', ''), '=', ' '))]
+            except:
+                return [False, 'Error occured during get user passwords.']   
+
+# Class functionality test
 if __name__ == '__main__':
 
     db = Database(database_name='menadzerhasel')
@@ -285,7 +363,7 @@ if __name__ == '__main__':
     assert db.connect() == True
 
     assert db.is_connected() == True
-    
+
     db.disconnect()
 
     assert db.is_connected() == False
