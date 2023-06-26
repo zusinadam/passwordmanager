@@ -1,0 +1,43 @@
+Wstęp:
+
+Szanowni Państwo,
+
+Dzisiaj mamy przyjemność przedstawić nasz projekt dotyczący Menadżera haseł. W obecnych czasach, kiedy zagrożenia związane z bezpieczeństwem danych stają się coraz większe, aplikacje tego typu są niezwykle istotne. Nasz Menadżer haseł został stworzony w celu zapewnienia użytkownikom bezpiecznego przechowywania i zarządzania ich hasłami. Dzięki niemu, użytkownicy będą mieli łatwy dostęp do swoich haseł, jednocześnie minimalizując ryzyko korzystania z słabych i łatwo odgadnialnych haseł.
+
+Slide 1: Utworzenie projektu na platformie GitHub
+Opis: W pierwszym kroku naszej pracy stworzyliśmy projekt na platformie GitHub. Dzięki temu, mieliśmy możliwość efektywnej współpracy i zarządzania kodem źródłowym projektu, a także udostępnienia go innym użytkownikom.
+
+Slide 2: Utworzenie szkieletu aplikacji
+Opis: Kolejnym etapem było utworzenie szkieletu aplikacji, czyli podstawowej struktury projektu Menadżera haseł. Ten krok pozwolił nam na odpowiednie zorganizowanie kodu i wstępne zdefiniowanie funkcjonalności aplikacji.
+
+Slide 3: Utworzenie i nawiązanie połączenia z pustą bazą danych
+Opis: Aby przechowywać dane użytkowników i ich hasła, stworzyliśmy bazę danych i nawiązaliśmy z nią połączenie. Ten krok był niezbędny do utworzenia struktury danych i zapewnienia poprawnego przechowywania informacji.
+
+Slide 4: Opracowanie algorytmu generowania bezpiecznych haseł
+Opis: Jednym z kluczowych elementów Menadżera haseł jest generowanie bezpiecznych haseł. Opracowaliśmy algorytm, który generuje silne i trudne do odgadnięcia hasła, zapewniając tym samym użytkownikom większe bezpieczeństwo.
+
+Slide 5: Opracowanie algorytmu hashującego wiadomości w celu bezpiecznego przechowywania haseł
+Opis: Aby zabezpieczyć przechowywane hasła przed nieautoryzowanym dostępem, zaimplementowaliśmy algorytm hashujący. Dzięki temu, hasła są przechowywane w formie zaszyfrowanej, minimalizując ryzyko odczytu przez osoby trzecie.
+
+Slide 6: Opracowanie algorytmu szyfrującego wiadomości w celu bezpiecznego przechowywania haseł
+Opis: Kolejnym istotnym elementem zapewniającym bezpieczeństwo przechowywanych haseł jest algorytm szyfrujący wiadomości. Dzięki niemu,
+
+ dane są szyfrowane i tylko użytkownik posiadający odpowiedni klucz jest w stanie je odczytać.
+
+Slide 7: Zaprojektowanie i wdrożenie mechanizmu rejestracji, logowania i odzyskiwania hasła
+Opis: Aby umożliwić użytkownikom korzystanie z Menadżera haseł, zaprojektowaliśmy i wdrożyliśmy mechanizm rejestracji i logowania. Dodatkowo, dostarczyliśmy funkcjonalność odzyskiwania hasła w przypadku jego utraty.
+
+Slide 8: Zaprojektowanie tabel i relacji w bazie danych
+Opis: Aplikacja Menadżer haseł korzysta z bazy danych, dlatego zaprojektowaliśmy odpowiednie tabele i relacje między nimi. To zapewnia poprawne funkcjonowanie aplikacji i przechowywanie danych w odpowiedniej strukturze.
+
+Slide 9: Wykorzystanie mechanizmu ORM do odwzorowania tabel i relacji
+Opis: Aby ułatwić pracę z bazą danych, zastosowaliśmy mechanizm ORM (mechanizm mapowania obiektowo-relacyjnego). Pozwolił nam on odwzorować zaprojektowane tabele i relacje na obiekty, co znacznie ułatwiło manipulację danymi.
+
+Slide 10: Wygenerowanie gotowych tabel wraz z relacjami
+Opis: Na podstawie utworzonych obiektów i zaprojektowanych tabel, wygenerowaliśmy gotowe tabele w bazie danych wraz z odpowiednimi relacjami. Dzięki temu aplikacja może efektywnie zarządzać danymi użytkowników.
+
+Slide 11: Utworzenie graficznego interfejsu użytkownika (GUI)
+Opis: Ostatnim etapem było stworzenie graficznego interfejsu użytkownika (GUI), który umożliwia intuicyjne korzystanie z funkcjonalności Menadżera haseł. Przez GUI użytkownicy mogą wygodnie zarządzać swoimi hasłami i cieszyć się zwiększonym poziomem bezpieczeństwa.
+
+Podsumowanie:
+Prezentowany przez nas projekt Menadżera haseł stanowi kompleksowe rozwiązanie, które umożliwia użytkownikom przechowywanie, generowanie i zarządzanie bezpiecznymi hasłami. Dzięki zastosowanym algorytmom szyfrowania, hashowania i bezpiecznemu przechowywaniu danych, zapewniamy ochronę informacji użytkowników. W połączeniu z intuicyjnym interfejsem graficznym, nasz Menadżer haseł jest idealnym narzędziem dla wszystkich osób dbających o bezpieczeństwo swoich danych. Dziękujemy za uwagę i jesteśmy gotowi odpowiedzieć na Państwa pytania.

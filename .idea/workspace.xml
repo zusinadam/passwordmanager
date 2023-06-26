@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e0cb6eb6-a69b-45a7-827e-020167ebdc8c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Classes/Database.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Password.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Rsa.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Sha512.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI_update.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI_update.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +15,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/Database.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/GUI_update.py" root0="SKIP_INSPECTION" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -27,13 +27,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="GUI_update" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="menadzerhasel" />
