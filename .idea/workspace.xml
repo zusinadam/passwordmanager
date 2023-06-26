@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="e0cb6eb6-a69b-45a7-827e-020167ebdc8c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
+=======
+    <list default="true" id="0da0b105-7387-42dc-b6c1-269bc8b4f49b" name="Changes" comment="" />
+>>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,6 +20,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+<<<<<<< Updated upstream
     <setting file="file://$PROJECT_DIR$/src/Database.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/GUI_update.py" root0="SKIP_INSPECTION" />
   </component>
@@ -23,21 +28,38 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2RNKjFVdCLgpeKGiHKDyt0kOCvb" />
+=======
+    <setting file="file://$PROJECT_DIR$/src/GUI_update.py" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
+  <component name="ProjectId" id="2RNFdrnXzvUmaop9a9vk1YXI6zr" />
+>>>>>>> Stashed changes
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+<<<<<<< Updated upstream
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "settings.editor.selected.configurable": "preferences.lookFeel"
+=======
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "run.code.analysis.last.selected.profile": "pProject Default"
+>>>>>>> Stashed changes
   }
 }]]></component>
   <component name="RunManager">
     <configuration name="GUI_update" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+<<<<<<< Updated upstream
       <module name="menadzerhasel" />
+=======
+>>>>>>> Stashed changes
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -49,6 +71,10 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+<<<<<<< Updated upstream
+=======
+      <module name="" />
+>>>>>>> Stashed changes
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/GUI_update.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -62,11 +88,19 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+<<<<<<< Updated upstream
       <changelist id="e0cb6eb6-a69b-45a7-827e-020167ebdc8c" name="Changes" comment="" />
       <created>1687085231824</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1687085231824</updated>
+=======
+      <changelist id="0da0b105-7387-42dc-b6c1-269bc8b4f49b" name="Changes" comment="" />
+      <created>1687082724551</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1687082724551</updated>
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
